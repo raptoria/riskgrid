@@ -1,0 +1,68 @@
+:root {
+  --primaryColor: #1f3448;
+  --primaryBackground: #edeef5;
+  --headerHeight: 30px;
+}
+
+@import url('https://fonts.googleapis.com/css?family=Mukta:300,400,500,600,700');
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Mukta', sans-serif;
+}
+
+h4 {
+  font-size: 14px;
+}
+
+h3 {
+  display: inline-block;
+  padding: 0px 6px;
+  font-size: 13px;
+  color: var(--primaryBackground);
+}
+
+.app {
+  height: 100vh;
+}
+
+.logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.header {
+  background: linear-gradient(to bottom, #caccd8ab 0%, #b9bece40 100%);
+  height: var(--headerHeight);
+  box-sizing: border-box;
+  box-shadow: inset -1px -7px 10px -6px rgba(0, 0, 0, 0.31);
+}
+
+.title {
+  font-size: 1.2em;
+  font-weight: 500;
+  color: var(--primaryColor);
+  padding: 4px;
+  font-family: 'Mukta', sans-serif;
+}
+
+.intro {
+  font-size: large;
+}
+.uppercaseText,
+.uppercaseText > .ag-cell-edit-input {
+  text-transform: uppercase;
+}
+
+.gridContainer {
+  display: grid;
+  align-items: end;
+  justify-content: left;
+  column-gap: 10px;
+}
+
+.gridDatePicker input {
+  height: 26px;
+}
