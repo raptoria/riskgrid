@@ -11,7 +11,7 @@ import './assets/styles/vendor.css';
 import './assets/styles/main.css';
 
 ReactDOM.render(
-  navigator.userAgent.indexOf('Chrome') > -1 ? (
+  /Chrome|Firefox|Safari/.test(navigator.userAgent) ? (
     <Provider store={store}>
       <AppContainer />
     </Provider>
