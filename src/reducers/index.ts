@@ -1,7 +1,7 @@
 import { ActionTypes } from '../actions';
-import { combineReducers, Reducer } from 'redux';
+import { combineReducers } from 'redux';
 import { grid } from './grid';
-import { IRootState, IGridAction } from './types';
+import { IGridAction } from './types';
 import { initialState } from './state';
 import { History } from 'history';
 import { connectRouter } from 'connected-react-router';
