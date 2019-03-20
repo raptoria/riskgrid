@@ -5,6 +5,7 @@ import { ActionCreatorsMapObject, ActionCreator, AnyAction } from 'redux';
 export interface IRootState {
   grid: any;
   app: any;
+  router?: any;
 }
 
 export interface IGridAction extends IRootAction {}
@@ -19,7 +20,7 @@ export interface IAction extends ActionCreatorsMapObject<any> {
 
 export interface IGridStateProps extends GridOptions {
   columnDefs: Array<ColDef>;
-  gridData: any;
+  gridData?: any;
   error?: string;
 }
 
@@ -32,7 +33,14 @@ export interface IDispatchProps {
   actions: IAction;
 }
 
-export interface IRecord {}
+export interface IRecord {
+  athlete: string;
+  age: number;
+  year: number;
+  sport: string;
+  date: string;
+  modified: string;
+}
 
 export interface IAppStateProps {}
 

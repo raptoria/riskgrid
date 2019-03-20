@@ -1,10 +1,8 @@
 import * as React from 'react';
-import * as moment from 'moment';
+import moment from 'moment';
 import { DatePicker } from 'antd';
 import { RowNode } from 'ag-grid-community';
-import { IExemptionRecord } from '~/reducers/types';
-import { actions } from '../../../actions';
-import { store } from '../../../store';
+import { IRecord } from '../../../reducers/types';
 
 export interface IDateEditorState {
   value: moment.Moment;
@@ -17,7 +15,7 @@ export interface IDateEditorProps {
 }
 
 export default class DateEditor extends React.Component<IDateEditorProps, IDateEditorState> {
-  private rowData: IExemptionRecord;
+  private rowData: IRecord;
 
   constructor(props: IDateEditorProps) {
     super(props);

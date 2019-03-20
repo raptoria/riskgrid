@@ -5,7 +5,7 @@ import { takeUntil, switchMap, catchError, map } from 'rxjs/operators';
 import { ActionTypes, actions } from './';
 import { IGridAction } from '../reducers/types';
 import { Services } from '../connectivity/services';
-import * as moment from 'moment';
+import moment from 'moment';
 
 const serviceHost = Services.serviceHosts[Services.env];
 

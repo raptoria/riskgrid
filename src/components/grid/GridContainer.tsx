@@ -28,13 +28,16 @@ export interface IGridProps extends RouteComponentProps<any> {
 }
 
 class Grid extends React.Component<IGridProps & IGridStateProps & IDispatchProps, {}> {
-  private gridApi: GridApi;
-  private columnApi: ColumnApi;
-  private rowBeingEdited: IRecord;
+  private gridApi: GridApi|null;
+  private columnApi: ColumnApi|null;
+  private rowBeingEdited: IRecord|null;
   private editingRowIndex: number | null;
   constructor(props: IGridProps & IGridStateProps & IDispatchProps) {
     super(props);
     this.editingRowIndex = null;
+    this.gridApi = null;
+    this.columnApi = null;
+    this.rowBeingEdited = null;
   }
 
   public componentDidMount() {
@@ -98,8 +101,8 @@ class Grid extends React.Component<IGridProps & IGridStateProps & IDispatchProps
     if (this.editingRowIndex === null) {
       return;
     }
-    const selectedNode: null | any = this.gridApi.getDisplayedRowAtIndex(this.editingRowIndex);
-    if (selectedNode && this.rowBeingEdited) {
+    const selectedNode: null | any = this.gridApi ? this.gridApi.getDisplayedRowAtIndex(this.editingRowIndex) : null;
+    if (selectedNode && this.rowBeingEdited && this.gridApi) {
       console.log('reverting row to old data', this.rowBeingEdited);
       //selectedNode.setData(this.rowBeingEdited);
       this.gridApi.stopEditing(true); //throw away any edits

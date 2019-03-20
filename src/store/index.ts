@@ -1,7 +1,7 @@
 import { Store, createStore, applyMiddleware, Reducer } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import createRootReducer from '../reducers';
-import { IRootState } from '~/reducers/types';
+import { IRootState } from '../reducers/types';
 import { createEpicMiddleware } from 'redux-observable';
 import combinedGridEpics from '../actions/gridEpics';
 import { initialState } from '../reducers/state';

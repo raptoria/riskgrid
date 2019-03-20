@@ -1,4 +1,4 @@
-import { IGridAction, IAction, IRecord } from '~/reducers/types';
+import { IGridAction, IAction, IRecord } from '../reducers/types';
 
 export const ActionTypes = {
   RECEIVE_ERROR: 'receiveError',

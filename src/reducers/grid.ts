@@ -68,7 +68,6 @@ initialState.grid = ((): IGridStateProps => ({
     numericEditor: NumericEditor,
     dateEditor: DateEditor
   },
-  createExemptionData: [{}],
   rowSelection: 'single',
   animateRows: true
 }))();
