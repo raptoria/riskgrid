@@ -17,7 +17,7 @@ ReactDOM.render(
     </Provider>
   ) : (
     <h2 style={{ color: '#1890ff', padding: '5px' }}>
-      This app is optimized for Google Chrome. Please switch browsers.
+      This app is optimized for Chrome, FF and Safari. Please switch browsers.
     </h2>
   ),
   document.getElementById('root') as HTMLElement
