@@ -1,0 +1,146 @@
+[
+  {
+    "product": "cocoa",
+    "sector": "softs",
+    "mv": 10,
+    "delta": 455,
+    "gamma": null,
+    "vega": null,
+    "theta": null
+  },
+  {
+    "product": "soybean",
+    "sector": "aggs",
+    "mv": 34,
+    "delta": 1345,
+    "gamma": 4,
+    "vega": 155499,
+    "theta": -42512
+  },
+  {
+    "product": "lean hogs",
+    "sector": "livestock",
+    "mv": 3,
+    "delta": 18,
+    "gamma": null,
+    "vega": null,
+    "theta": null
+  },
+  {
+    "product": "soybean meal",
+    "sector": "aggs",
+    "mv": 20,
+    "delta": 750,
+    "gamma": 3,
+    "vega": 350503,
+    "theta": -3502
+  },
+  {
+    "product": "sugar",
+    "sector": "softs",
+    "mv": 30,
+    "delta": 1777,
+    "gamma": 150,
+    "vega": 52406,
+    "theta": -4036
+  },
+  {
+    "product": "corn",
+    "sector": "aggs",
+    "mv": 116,
+    "delta": 9340,
+    "gamma": 104,
+    "vega": 459600,
+    "theta": -110350
+  },
+  {
+    "product": "cotton",
+    "sector": "softs",
+    "mv": -0.3,
+    "delta": -14,
+    "gamma": null,
+    "vega": null,
+    "theta": null
+  },
+  {
+    "product": "ethanol",
+    "sector": "softs",
+    "mv": -0.1,
+    "delta": 0,
+    "gamma": null,
+    "vega": null,
+    "theta": null
+  },
+  {
+    "product": "brent",
+    "sector": "energy",
+    "mv": -240.5,
+    "delta": -4001,
+    "gamma": -120,
+    "vega": -230030,
+    "theta": 92050
+  },
+  {
+    "product": "WTI",
+    "sector": "energy",
+    "mv": -23.4,
+    "delta": -98,
+    "gamma": 134,
+    "vega": 103500,
+    "theta": -73599
+  },
+  {
+    "product": "gasoil",
+    "sector": "energy",
+    "mv": 0.2,
+    "delta": 8,
+    "gamma": null,
+    "vega": null,
+    "theta": null
+  },
+  {
+    "product": "heating oil",
+    "sector": "energy",
+    "mv": -253.9,
+    "delta": -2560,
+    "gamma": null,
+    "vega": null,
+    "theta": null
+  },
+  {
+    "product": "soft red wheat",
+    "sector": "aggs",
+    "mv": -53,
+    "delta": -2445,
+    "gamma": null,
+    "vega": null,
+    "theta": null
+  },
+  {
+    "product": "copper",
+    "sector": "metals",
+    "mv": 6.4,
+    "delta": 32,
+    "gamma": null,
+    "vega": null,
+    "theta": null
+  },
+  {
+    "product": "live cattle",
+    "sector": "livestock",
+    "mv": 7.3,
+    "delta": 41,
+    "gamma": null,
+    "vega": null,
+    "theta": null
+  },
+  {
+    "product": "soybean oil",
+    "sector": "aggs",
+    "mv": -3.5,
+    "delta": -239,
+    "gamma": 15,
+    "vega": 6406,
+    "theta": -406
+  }
+]

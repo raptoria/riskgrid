@@ -1,75 +1,78 @@
-import { initialState } from './state';
-import { ActionTypes } from '../actions';
-import { IGridAction, IGridStateProps, IRecord } from './types';
-import { LOCATION_CHANGE } from 'connected-react-router';
-import NumericEditor from '../components/grid/editors/NumericEditor';
-import DateEditor from '../components/grid/editors/DateEditor';
+import { initialState } from "./state";
+import { ActionTypes } from "../actions";
+import { IGridAction, IGridStateProps, IRecord } from "./types";
+import { LOCATION_CHANGE } from "connected-react-router";
+import NumericEditor from "../components/grid/editors/NumericEditor";
+import DateEditor from "../components/grid/editors/DateEditor";
 
 initialState.grid = ((): IGridStateProps => ({
   columnDefs: [
     {
-      headerName: 'Athlete',
-      field: 'athlete'
+      headerName: "Product",
+      field: "product",
     },
     {
-      headerName: 'Age',
-      field: 'age',
+      headerName: "Sector",
+      field: "sector",
+    },
+    {
+      headerName: "MV (USD)",
+      field: "mv",
       editable: true,
-      filter: 'agNumberColumnFilter',
-      cellEditorParams: { showButtons: true }
+      filter: "agNumberColumnFilter",
+      cellEditorParams: { showButtons: true },
     },
     {
-      headerName: 'Year',
-      field: 'year',
+      headerName: "Delta ADJCTS",
+      field: "delta",
       editable: true,
-      filter: 'agNumberColumnFilter'
     },
     {
-      headerName: 'Sport',
-      field: 'sport',
-      editable: true
-    },
-    {
-      headerName: 'Date',
-      field: 'date',
+      headerName: "Gamma CTS",
+      field: "gamma",
       editable: true,
-      minWidth: 120
     },
     {
-      headerName: 'Modified',
-      field: 'modified'
-    }
+      headerName: "VegaUSD",
+      field: "vega",
+      editable: true,
+      minWidth: 120,
+    },
+    {
+      headerName: "ThetaUSD",
+      field: "theta",
+    },
   ],
   autoGroupColumnDef: {
-    headerName: '',
+    headerName: "",
     minWidth: 210,
     maxWidth: 500,
-    pinned: 'left'
+    pinned: "left",
   },
   defaultColDef: {
     //minWidth: 90,
     //maxWidth: 200,
     enableCellChangeFlash: true,
-    menuTabs: ['filterMenuTab', 'generalMenuTab']
+    menuTabs: ["filterMenuTab", "generalMenuTab"],
   },
   getRowNodeId: (data: IRecord) => {
     if (data.athlete) {
       return data.athlete.toString();
     } else {
-      throw Error('Athlete is null for some values');
+      throw Error("Athlete is null for some values");
     }
   },
   deltaRowDataMode: true,
   enableFilter: true,
   enableColResize: true,
   enableSorting: true,
-  editType: 'fullRow',
+  editType: "fullRow",
   frameworkComponents: {
     numericEditor: NumericEditor,
-    dateEditor: DateEditor
+    dateEditor: DateEditor,
   },
-  rowSelection: 'single',
-  animateRows: true
+  rowSelection: "single",
+  animateRows: true,
 }))();
 
 export const grid = (state = initialState, action: IGridAction) => {
@@ -83,7 +86,7 @@ export const grid = (state = initialState, action: IGridAction) => {
         (record: IRecord) => record.athlete === newRecord.athlete
       );
       if (existingIndex !== -1) {
-        console.log('inside reducer splicing gridData', newRecord);
+        console.log("inside reducer splicing gridData", newRecord);
         gridData.splice(existingIndex, 1, newRecord); //this causes weird data mismatch during editing. waiting for AG-2542 fix
       } else {
         gridData.push(newRecord);
@@ -91,7 +94,7 @@ export const grid = (state = initialState, action: IGridAction) => {
       return Object.assign({}, state, {
         gridData,
         error: null,
-        createExemptionData: [{}]
+        createExemptionData: [{}],
       });
     case ActionTypes.RECEIVE_GRID_DATA:
       return Object.assign({}, state, { gridData: action.payload });
@@ -100,7 +103,7 @@ export const grid = (state = initialState, action: IGridAction) => {
         error: action.error,
         preventDataSourceUpdate: true,
         lastRow: null,
-        preventUpdates: false
+        preventUpdates: false,
       });
     case LOCATION_CHANGE:
       return Object.assign({}, state, { preventUpdates: false });

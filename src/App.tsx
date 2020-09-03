@@ -1,11 +1,11 @@
-import * as React from 'react';
-import GridContainer from './components/grid/GridContainer';
-import 'ag-grid-enterprise';
-import { Pages } from './reducers/types';
-import { IAppStateProps } from './reducers/types';
-import { ConnectedRouter } from 'connected-react-router';
-import { history } from './store';
-import { Route, Switch, Redirect, RouteComponentProps } from 'react-router';
+import * as React from "react";
+import GridContainer from "./components/grid/GridContainer";
+import "ag-grid-enterprise";
+import { Pages } from "./reducers/types";
+import { IAppStateProps } from "./reducers/types";
+import { ConnectedRouter } from "connected-react-router";
+import { history } from "./store";
+import { Route, Switch, Redirect, RouteComponentProps } from "react-router";
 
 class App extends React.Component<IAppStateProps> {
   private gridHeight: string;
@@ -14,7 +14,7 @@ class App extends React.Component<IAppStateProps> {
     super(props);
 
     const nonGridHeight = 30; //parseInt(styles.headerHeight, 10);
-    this.gridHeight = 'calc(100% - ' + nonGridHeight + 'px)';
+    this.gridHeight = "calc(100% - " + nonGridHeight + "px)";
   }
 
   public render() {
@@ -25,11 +25,11 @@ class App extends React.Component<IAppStateProps> {
             {this.renderHeader()}
             <Switch key="routerSwitch">
               <Route
-                path={'/' + Pages.indexRoute}
+                path={"/" + Pages.indexRoute}
                 key={Pages.indexRoute}
                 render={this.renderGrid(Pages.indexRoute)}
               />
-              <Redirect to={'/' + Pages.indexRoute} />
+              <Redirect to={"/" + Pages.indexRoute} />
             </Switch>
           </>
         </div>
@@ -39,7 +39,7 @@ class App extends React.Component<IAppStateProps> {
 
   private renderHeader = () => (
     <header className="header">
-      <h3 className="title">REACT</h3>
+      <h3 className="title">Risk Dashboard</h3>
     </header>
   );
 
