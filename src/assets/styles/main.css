@@ -1,16 +1,16 @@
 :root {
-  --primaryColor: #1f3448;
-  --primaryBackground: #edeef5;
-  --headerHeight: 30px;
+  --primaryColor: #fff;
+  --primaryBackground: #8700df;
+  --headerHeight: 35px;
 }
 
-@import url('https://fonts.googleapis.com/css?family=Mukta:300,400,500,600,700');
+@import url("https://fonts.googleapis.com/css?family=Mukta:300,400,500,600,700");
 
 html,
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Mukta', sans-serif;
+  font-family: "Mukta", sans-serif;
 }
 
 h4 {
@@ -34,18 +34,18 @@ h3 {
 }
 
 .header {
-  background: linear-gradient(to bottom, #caccd8ab 0%, #b9bece40 100%);
+  background: var(--primaryBackground);
+  color: var(--primaryColor);
   height: var(--headerHeight);
-  box-sizing: border-box;
-  box-shadow: inset -1px -7px 10px -6px rgba(0, 0, 0, 0.31);
+  text-align: center;
 }
 
 .title {
   font-size: 1.2em;
-  font-weight: 500;
+  font-weight: 400;
   color: var(--primaryColor);
   padding: 4px;
-  font-family: 'Mukta', sans-serif;
+  font-family: "Mukta", sans-serif;
 }
 
 .intro {

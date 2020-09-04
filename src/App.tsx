@@ -1,6 +1,6 @@
 import * as React from "react";
 import GridContainer from "./components/grid/GridContainer";
-import "ag-grid-enterprise";
+//import "ag-grid-enterprise";
 import { Pages } from "./reducers/types";
 import { IAppStateProps } from "./reducers/types";
 import { ConnectedRouter } from "connected-react-router";

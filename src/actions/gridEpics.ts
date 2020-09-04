@@ -4,10 +4,10 @@ import { of } from "rxjs";
 import { takeUntil, switchMap, catchError, map } from "rxjs/operators";
 import { ActionTypes, actions } from "./";
 import { IGridAction } from "../reducers/types";
-import { Services } from "../connectivity/services";
 import moment from "moment";
+//import { Services } from "../connectivity/services";
 
-const serviceHost = Services.serviceHosts[Services.env];
+//const serviceHost = Services.serviceHosts[Services.env];
 
 const requestGridDataEpic = (action$: ActionsObservable<any>) =>
   action$.ofType(ActionTypes.REQUEST_GRID_DATA).pipe(

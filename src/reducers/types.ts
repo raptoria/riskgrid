@@ -1,6 +1,6 @@
-import { ColDef } from 'ag-grid-community';
-import { GridOptions } from 'ag-grid-community';
-import { ActionCreatorsMapObject, ActionCreator, AnyAction } from 'redux';
+import { ColDef } from "@ag-grid-community/core";
+import { GridOptions, Module } from "@ag-grid-community/core";
+import { ActionCreatorsMapObject, ActionCreator, AnyAction } from "redux";
 
 export interface IRootState {
   grid: any;
@@ -22,6 +22,8 @@ export interface IGridStateProps extends GridOptions {
   columnDefs: Array<ColDef>;
   gridData?: any;
   error?: string;
+  modules?: Array<Module>;
+  sideBar: string;
 }
 
 export interface IRootAction extends AnyAction {
@@ -34,12 +36,13 @@ export interface IDispatchProps {
 }
 
 export interface IRecord {
-  athlete: string;
-  age: number;
-  year: number;
-  sport: string;
-  date: string;
-  modified: string;
+  product: string;
+  sector: string;
+  mv: number;
+  delta: number;
+  gamma: string;
+  vega: string;
+  theta: string;
 }
 
 export interface IAppStateProps {}
@@ -51,5 +54,5 @@ declare global {
 }
 
 export enum Pages {
-  indexRoute = 'index'
+  indexRoute = "index",
 }
