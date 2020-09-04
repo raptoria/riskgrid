@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { actions } from "../../actions";
@@ -8,8 +8,6 @@ import { IRootState, IDispatchProps } from "../../reducers/types";
 import { Alert } from "antd";
 import {
   GridReadyEvent,
-  GridApi,
-  ColumnApi,
   GetMainMenuItemsParams,
 } from "@ag-grid-community/core";
 import { RouteComponentProps } from "react-router";
@@ -19,73 +17,59 @@ export interface IGridProps extends RouteComponentProps<any> {
   id: string;
 }
 
-class Grid extends React.Component<
-  IGridProps & IGridStateProps & IDispatchProps,
-  {}
-> {
-  private gridApi: GridApi | null;
-  private columnApi: ColumnApi | null;
+const onGridReady = (params: GridReadyEvent) => {
+  //params.columnApi?.autoSizeAllColumns();
+  params.api?.sizeColumnsToFit(); //do this for window onResize later
+};
 
-  constructor(props: IGridProps & IGridStateProps & IDispatchProps) {
-    super(props);
+const getMainMenuItems = (params: GetMainMenuItemsParams) => {
+  const itemsToExclude = ["resetColumns", "valueAggSubMenu", "separator"];
+  const newItems = params.defaultItems.filter(
+    (item: any) => itemsToExclude.indexOf(item) === -1
+  );
+  return newItems;
+};
 
-    this.gridApi = null;
-    this.columnApi = null;
-  }
+const Grid: React.FC<IGridProps & IGridStateProps & IDispatchProps> = ({
+  actions,
+  gridHeight,
+  error,
+  gridData,
+  modules,
+  columnDefs,
+  autoGroupColumnDef,
+  sideBar,
+  defaultColDef,
+}) => {
+  useEffect(() => {
+    actions.requestGridData();
+  }, [actions]);
 
-  public componentDidMount() {
-    this.props.actions.requestGridData();
-  }
-
-  public render() {
-    return (
-      <div
-        style={{
-          height: this.props.gridHeight,
-          width: "100%",
-          boxSizing: "border-box",
-        }}
-        className="ag-theme-alpine"
-      >
-        {this.props.error ? (
-          <Alert type="error" showIcon={true} message={this.props.error} />
-        ) : null}
-        {this.props.gridData ? (
-          <AgGridReact
-            modules={this.props.modules}
-            columnDefs={this.props.columnDefs}
-            rowData={this.props.gridData}
-            onGridReady={this.onGridReady}
-            autoGroupColumnDef={this.props.autoGroupColumnDef}
-            defaultColDef={this.props.defaultColDef}
-            getMainMenuItems={this.getMainMenuItems}
-            sideBar={this.props.sideBar}
-          />
-        ) : null}
-      </div>
-    );
-  }
-
-  private onGridReady = (params: GridReadyEvent) => {
-    const id = this.props.id;
-
-    if (id && params.api && params.columnApi) {
-      this.columnApi = params.columnApi;
-      this.gridApi = params.api;
-      //this.columnApi.autoSizeAllColumns();
-      this.gridApi?.sizeColumnsToFit(); //do this for window onResize later
-      console.log("onGridReady");
-    }
-  };
-
-  private getMainMenuItems = (params: GetMainMenuItemsParams) => {
-    const itemsToExclude = ["resetColumns", "valueAggSubMenu", "separator"];
-    const newItems = params.defaultItems.filter(
-      (item: any) => itemsToExclude.indexOf(item) === -1
-    );
-    return newItems;
-  };
-}
+  return (
+    <div
+      style={{
+        height: gridHeight,
+        width: "100%",
+        boxSizing: "border-box",
+      }}
+      className="ag-theme-alpine"
+    >
+      {error ? <Alert type="error" showIcon={true} message={error} /> : null}
+      {gridData ? (
+        <AgGridReact
+          modules={modules}
+          columnDefs={columnDefs}
+          rowData={gridData}
+          onGridReady={onGridReady}
+          autoGroupColumnDef={autoGroupColumnDef}
+          defaultColDef={defaultColDef}
+          getMainMenuItems={getMainMenuItems}
+          sideBar={sideBar}
+        />
+      ) : null}
+    </div>
+  );
+};
 
 const mapStateToProps = (state: IRootState): IGridStateProps => ({
   gridData: state.grid.gridData,
