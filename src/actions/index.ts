@@ -2,8 +2,8 @@ import { IGridAction, IAction, IRecord } from "../reducers/types";
 
 export const ActionTypes = {
   RECEIVE_ERROR: "receiveError",
-  REQUEST_GRID_DATA: "requestGridData",
-  RECEIVE_GRID_DATA: "receiveGridData",
+  REQUEST_GRID_DATA: "requestRowData",
+  RECEIVE_GRID_DATA: "receiveRowData",
   CHANGE_TABS: "changeTabs",
   REQUEST_INSERT_UPDATE_RECORD: "requestInsertUpdateRecord",
   RECEIVE_INSERT_UPDATE_RECORD: "receiveInsertUpdateRecord",
@@ -11,11 +11,11 @@ export const ActionTypes = {
 
 export const actions: IAction = {
   receiveError: (error: string) => ({ type: ActionTypes.RECEIVE_ERROR, error }),
-  requestGridData: (data: IGridAction) => ({
+  requestRowData: (data: IGridAction) => ({
     ...data,
     type: ActionTypes.REQUEST_GRID_DATA,
   }),
-  receiveGridData: (data: IGridAction) => ({
+  receiveRowData: (data: IGridAction) => ({
     type: ActionTypes.RECEIVE_GRID_DATA,
     payload: data,
   }),

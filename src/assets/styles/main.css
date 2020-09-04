@@ -1,6 +1,8 @@
 :root {
   --primaryColor: #fff;
+  --secondaryColor: #7c499c;
   --primaryBackground: #8700df;
+  --secondaryBackground: #f8f3fb;
   --headerHeight: 35px;
 }
 
@@ -26,11 +28,6 @@ h3 {
 
 .app {
   height: 100vh;
-}
-
-.logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
 }
 
 .header {
@@ -63,6 +60,10 @@ h3 {
   column-gap: 10px;
 }
 
-.gridDatePicker input {
-  height: 26px;
+span.negative {
+  color: red;
+}
+
+span.summary {
+  color: var(--secondaryColor);
 }

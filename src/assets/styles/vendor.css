@@ -62,21 +62,10 @@ span.ant-radio + * {
   margin-bottom: 0;
 }
 
-/* fix for save/cancel button to appear if first row is being edited */
-
-/* .ag-body-viewport-wrapper {
-  overflow: visible; 
+/* to help highlight the example, shade blue to top and bottom pinned */
+.ag-floating-top .ag-row {
+  background-color: var(--secondaryBackground) !important;
 }
-
-.ag-body-viewport.ag-layout-normal:has( div.ag-row-inline-editing.ag-row-selected.ag-row-focus) { //has doesn't exist in Chrome yet...
-  overflow: visible;
-} */
-
-/* .ag-theme-balham .ag-cell-inline-editing {
-  overflow: visible;
-} */
-
-/* end css fixes */
 
 .ant-tree {
   font-size: 13px;

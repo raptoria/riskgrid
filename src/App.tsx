@@ -17,7 +17,7 @@ const renderGrid = (id: string) => (props: RouteComponentProps<any>) => {
     document.documentElement
   ).getPropertyValue("--headerHeight");
 
-  const gridHeight = `calc(100% - ${headerHeight} )`;
+  const gridHeight = `calc(100% - ${headerHeight} )`; //gets rid of scrollbars
   return (
     <GridContainer
       id={id}

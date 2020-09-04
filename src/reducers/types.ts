@@ -12,23 +12,22 @@ export interface IGridAction extends IRootAction {}
 
 export interface IAction extends ActionCreatorsMapObject<any> {
   receiveError: ActionCreator<any>;
-  requestGridData: ActionCreator<any>;
-  receiveGridData: ActionCreator<any>;
+  requestRowData: ActionCreator<any>;
+  receiveRowData: ActionCreator<any>;
   receiveInsertUpdateRecord: ActionCreator<any>;
   requestInsertUpdateRecord: ActionCreator<any>;
 }
 
 export interface IGridStateProps extends GridOptions {
   columnDefs: Array<ColDef>;
-  gridData?: any;
+  rowData?: any;
   error?: string;
   modules?: Array<Module>;
-  sideBar: string;
 }
 
 export interface IRootAction extends AnyAction {
   error?: string;
-  payload?: {};
+  payload: Array<IRecord>;
 }
 
 export interface IDispatchProps {
@@ -40,9 +39,9 @@ export interface IRecord {
   sector: string;
   mv: number;
   delta: number;
-  gamma: string;
-  vega: string;
-  theta: string;
+  gamma: number;
+  vega: number;
+  theta: number;
 }
 
 export interface IAppStateProps {}

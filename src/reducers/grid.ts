@@ -7,6 +7,12 @@ import { RowGroupingModule } from "@ag-grid-enterprise/row-grouping";
 import { MenuModule } from "@ag-grid-enterprise/menu";
 import { SetFilterModule } from "@ag-grid-enterprise/set-filter";
 import { ColumnsToolPanelModule } from "@ag-grid-enterprise/column-tool-panel";
+import {
+  negativeNumRenderer,
+  uppercaseRenderer,
+  summaryRow,
+  getSummaryData,
+} from "../components/grid/renderers";
 
 initialState.grid = ((): IGridStateProps => ({
   modules: [
@@ -20,35 +26,40 @@ initialState.grid = ((): IGridStateProps => ({
     {
       headerName: "Product",
       field: "product",
+      cellRenderer: "uppercaseRenderer",
     },
     {
       headerName: "Sector",
       field: "sector",
       rowGroup: true,
       hide: true,
+      cellRenderer: "uppercaseRenderer",
     },
     {
       headerName: "MV (USD)",
       field: "mv",
       filter: "agNumberColumnFilter",
-      cellEditorParams: { showButtons: true },
+      cellRenderer: "negativeNumRenderer",
     },
     {
       headerName: "Delta ADJCTS",
       field: "delta",
+      cellRenderer: "negativeNumRenderer",
     },
     {
       headerName: "Gamma CTS",
       field: "gamma",
+      cellRenderer: "negativeNumRenderer",
     },
     {
-      headerName: "VegaUSD",
+      headerName: "Vega USD",
       field: "vega",
-      minWidth: 120,
+      cellRenderer: "negativeNumRenderer",
     },
     {
-      headerName: "ThetaUSD",
+      headerName: "Theta USD",
       field: "theta",
+      cellRenderer: "negativeNumRenderer",
     },
   ],
   autoGroupColumnDef: {
@@ -67,10 +78,17 @@ initialState.grid = ((): IGridStateProps => ({
     sortable: true,
     filter: true,
     flex: 1,
+    resizable: true,
     enableCellChangeFlash: true,
     menuTabs: ["filterMenuTab", "generalMenuTab"],
+    pinnedRowCellRenderer: "summaryRow",
   },
   sideBar: "columns",
+  frameworkComponents: {
+    negativeNumRenderer,
+    uppercaseRenderer,
+    summaryRow,
+  },
   getRowNodeId: (data: IRecord) => {
     if (data.product) {
       return data.product.toString();
@@ -88,7 +106,10 @@ initialState.grid = ((): IGridStateProps => ({
 export const grid = (state = initialState, action: IGridAction) => {
   switch (action.type) {
     case ActionTypes.RECEIVE_GRID_DATA:
-      return Object.assign({}, state, { gridData: action.payload });
+      return Object.assign({}, state, {
+        rowData: action.payload,
+        pinnedTopRowData: getSummaryData(action.payload),
+      });
     case ActionTypes.RECEIVE_ERROR:
       return Object.assign({}, state, {
         error: action.error,

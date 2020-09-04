@@ -18,8 +18,11 @@ export interface IGridProps extends RouteComponentProps<any> {
 }
 
 const onGridReady = (params: GridReadyEvent) => {
-  //params.columnApi?.autoSizeAllColumns();
-  params.api?.sizeColumnsToFit(); //do this for window onResize later
+  params.api?.forEachNode((node, row) => {
+    if (row === 0) {
+      node.setExpanded(true);
+    }
+  });
 };
 
 const getMainMenuItems = (params: GetMainMenuItemsParams) => {
@@ -34,15 +37,17 @@ const Grid: React.FC<IGridProps & IGridStateProps & IDispatchProps> = ({
   actions,
   gridHeight,
   error,
-  gridData,
+  rowData,
   modules,
   columnDefs,
   autoGroupColumnDef,
   sideBar,
   defaultColDef,
+  frameworkComponents,
+  pinnedTopRowData,
 }) => {
   useEffect(() => {
-    actions.requestGridData();
+    actions.requestRowData();
   }, [actions]);
 
   return (
@@ -50,21 +55,22 @@ const Grid: React.FC<IGridProps & IGridStateProps & IDispatchProps> = ({
       style={{
         height: gridHeight,
         width: "100%",
-        boxSizing: "border-box",
       }}
       className="ag-theme-alpine"
     >
       {error ? <Alert type="error" showIcon={true} message={error} /> : null}
-      {gridData ? (
+      {rowData ? (
         <AgGridReact
           modules={modules}
           columnDefs={columnDefs}
-          rowData={gridData}
+          rowData={rowData}
           onGridReady={onGridReady}
           autoGroupColumnDef={autoGroupColumnDef}
           defaultColDef={defaultColDef}
           getMainMenuItems={getMainMenuItems}
+          frameworkComponents={frameworkComponents}
           sideBar={sideBar}
+          pinnedTopRowData={pinnedTopRowData}
         />
       ) : null}
     </div>
@@ -72,13 +78,15 @@ const Grid: React.FC<IGridProps & IGridStateProps & IDispatchProps> = ({
 };
 
 const mapStateToProps = (state: IRootState): IGridStateProps => ({
-  gridData: state.grid.gridData,
+  rowData: state.grid.rowData,
   columnDefs: state.grid.columnDefs,
   autoGroupColumnDef: state.grid.autoGroupColumnDef,
   defaultColDef: state.grid.defaultColDef,
   error: state.grid.error,
   modules: state.grid.modules,
   sideBar: state.grid.sideBar,
+  frameworkComponents: state.grid.frameworkComponents,
+  pinnedTopRowData: state.grid.pinnedTopRowData,
 });
 
 const mapDispatchToProps = (dispatch: any): IDispatchProps => ({

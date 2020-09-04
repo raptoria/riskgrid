@@ -9,7 +9,7 @@ import moment from "moment";
 
 //const serviceHost = Services.serviceHosts[Services.env];
 
-const requestGridDataEpic = (action$: ActionsObservable<any>) =>
+const requestRowDataEpic = (action$: ActionsObservable<any>) =>
   action$.ofType(ActionTypes.REQUEST_GRID_DATA).pipe(
     switchMap((action: IGridAction) => {
       return ajax({
@@ -21,7 +21,7 @@ const requestGridDataEpic = (action$: ActionsObservable<any>) =>
         //withCredentials: true,
         responseType: "json",
       }).pipe(
-        map((data: any) => actions.receiveGridData(data.response)),
+        map((data: any) => actions.receiveRowData(data.response)),
         catchError((error: any) => {
           return of(
             actions.receiveError(
@@ -48,4 +48,4 @@ const updateOrInsertRecordEpic = (action$: ActionsObservable<any>) =>
     })
   );
 
-export default combineEpics(requestGridDataEpic, updateOrInsertRecordEpic);
+export default combineEpics(requestRowDataEpic, updateOrInsertRecordEpic);
