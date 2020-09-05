@@ -53,5 +53,5 @@ declare global {
 }
 
 export enum Pages {
-  indexRoute = "index",
+  indexRoute = "commodities",
 }
