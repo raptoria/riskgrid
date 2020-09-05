@@ -1,0 +1,10 @@
+# vim: et ts=2 sw=2
+
+RewriteCond %{HTTPS} !=on
+RewriteRule ^(.*) https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+<Files *.php>
+  Require all denied
+</Files>
+
+# Require ip 107.206.100.116
