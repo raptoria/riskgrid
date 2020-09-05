@@ -1,0 +1,38 @@
+name: Production Build and Deploy
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '14.x'
+
+      - uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - run: npm install
+
+      - run: npm run build
+
+      - name: Rsync Deployments Action
+        uses: Burnett01/rsync-deployments@4.1
+        with:
+          switches: -avH --delete --exclude .well-known
+          path: dist/
+          remote_path: riskgrid.intuitiveux.design/
+          remote_host: amherst.dreamhost.com
+          remote_user: kessieduck
+          remote_key: ${{ secrets.DEPLOY_KEY }}
