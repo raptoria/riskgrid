@@ -28,7 +28,7 @@
   "precommit": "lint-staged",
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts build && cp src/htaccess build/.htaccess && cp src/robots.txt build/",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
