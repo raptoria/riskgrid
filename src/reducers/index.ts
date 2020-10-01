@@ -1,10 +1,10 @@
-import { ActionTypes } from '../actions';
-import { combineReducers } from 'redux';
-import { grid } from './grid';
-import { IGridAction } from './types';
-import { initialState } from './state';
-import { History } from 'history';
-import { connectRouter } from 'connected-react-router';
+import { ActionTypes } from "../actions";
+import { combineReducers } from "redux";
+import { grid } from "./grid";
+import { IGridAction } from "./types";
+import { initialState } from "../state/state";
+import { History } from "history";
+import { connectRouter } from "connected-react-router";
 
 export const app = (state = initialState, action: IGridAction) => {
   switch (action.type) {
@@ -19,7 +19,7 @@ const createRootReducer = (history: History) =>
   combineReducers({
     app,
     grid,
-    router: connectRouter(history)
+    router: connectRouter(history),
   });
 
 export default createRootReducer;
