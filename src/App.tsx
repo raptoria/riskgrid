@@ -40,7 +40,9 @@ const App: React.FC<IAppStateProps> = () => {
               key={Pages.indexRoute}
               render={renderGrid(Pages.indexRoute)}
             />
-            <Redirect to={"/" + Pages.indexRoute} />
+            <Route exact path="/">
+              <Redirect to={"/" + Pages.indexRoute} />
+            </Route>
           </Switch>
         </>
       </div>
