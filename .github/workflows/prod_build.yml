@@ -32,7 +32,7 @@ jobs:
         with:
           switches: -avH --delete --exclude .well-known
           path: build/
-          remote_path: riskgrid.intuitiveux.design/
+          remote_path: riskgrid.guigurl.com/
           remote_host: amherst.dreamhost.com
           remote_user: kessieduck
           remote_key: ${{ secrets.DEPLOY_KEY }}
